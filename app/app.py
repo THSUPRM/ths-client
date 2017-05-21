@@ -36,6 +36,7 @@ app_bundle = Bundle(
     './app.js',
     'app/tweets/tweets.module.js',
     'app/tweets/tweets.controller.js',
+    'app/tweets/tweets.factory.js',
     filters='rjsmin',
     output='build/app.min.js'
 )
