@@ -35,6 +35,7 @@ assets.register('vendor', vendor_bundle)
 app_bundle = Bundle(
     './app.js',
     'app/auth/auth.module.js',
+    'app/auth/auth.controller.js',
     filters='rjsmin',
     output='build/app.min.js'
 )
