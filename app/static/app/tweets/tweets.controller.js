@@ -11,6 +11,6 @@
         ]);
 
     function TweetsController($scope, $log) {
-        $log.log('Hello World from the Auth Controller using the $log service');
+        $log.log('Hello World from the Tweets Controller using the $log service');
     }
 })();
