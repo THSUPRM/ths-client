@@ -13,4 +13,4 @@
     function Tweets($stateProvider, $urlRouterProvider) {
 
     }
- })();
+})();
