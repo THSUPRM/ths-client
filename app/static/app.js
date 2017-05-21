@@ -6,7 +6,8 @@
 
     var app = angular.module('thsClient', [
         'ui.router',
-        'thsClient.tweets'
+        'thsClient.tweets',
+        'thsClient.auth'
     ]);
 
     app.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
