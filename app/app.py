@@ -33,7 +33,8 @@ vendor_bundle = Bundle(
 assets.register('vendor', vendor_bundle)
 
 app_bundle = Bundle(
-    './app.js',
+    './app.module.js',
+    './app.controller.js',
     filters='rjsmin',
     output='build/app.min.js'
 )
