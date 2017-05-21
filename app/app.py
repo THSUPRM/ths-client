@@ -35,6 +35,7 @@ assets.register('vendor', vendor_bundle)
 app_bundle = Bundle(
     './app.js',
     'app/tweets/tweets.module.js',
+    'app/tweets/tweets.controller.js',
     filters='rjsmin',
     output='build/app.min.js'
 )
