@@ -33,7 +33,8 @@ vendor_bundle = Bundle(
 assets.register('vendor', vendor_bundle)
 
 app_bundle = Bundle(
-    './app.js',
+    './app.module.js',
+    './app.controller.js',
     'app/tweets/tweets.module.js',
     'app/tweets/tweets.controller.js',
     'app/tweets/tweets.factory.js',

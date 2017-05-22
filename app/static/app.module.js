@@ -4,14 +4,20 @@
      */
     'use strict';
 
-    var app = angular.module('thsClient', [
-        'ui.router',
-        'thsClient.tweets',
-        'thsClient.auth'
-    ]);
+    angular
+        .module('thsClient', [
+            'ui.router',
+            'thsClient.tweets',
+            'thsClient.auth'
+        ]);
+        .config([
+            '$locationProvider',
+            '$stateProvider',
+            '$urlRouterProvider',
+            App
+          ]);
 
-    app.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
-        function($locationProvider, $stateProvider, $urlRouterProvider) {
+        function App($locationProvider, $stateProvider, $urlRouterProvider) {
             // HTML5 Mode for compatibility with Flask
             $locationProvider.html5Mode(true);
 
@@ -47,10 +53,6 @@
 
             $urlRouterProvider.when('/', '/home');
             $urlRouterProvider.otherwise('/home');
-        }]);
-
-    app.controller('AppCtrl', ['$scope', '$log', function($scope, $log) {
-        $log.log('Hello World from the App Controller using the $log Service');
-    }]);
+        }
 
 })();
