@@ -6,14 +6,16 @@
 
     angular
         .module('thsClient', [
-            'ui.router'
+            'ui.router',
+            'thsClient.tweets',
+            'thsClient.auth'
         ]);
         .config([
             '$locationProvider',
             '$stateProvider',
             '$urlRouterProvider',
             App
-           ]);
+          ]);
 
         function App($locationProvider, $stateProvider, $urlRouterProvider) {
             // HTML5 Mode for compatibility with Flask
