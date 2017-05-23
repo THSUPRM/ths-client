@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('thsClient.tweets', []);
+        .module('thsClient.tweets', [])
         .config([
             '$stateProvider',
             '$urlRouterProvider',

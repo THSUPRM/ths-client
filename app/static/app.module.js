@@ -9,7 +9,7 @@
             'ui.router',
             'thsClient.tweets',
             'thsClient.auth'
-        ]);
+        ])
         .config([
             '$locationProvider',
             '$stateProvider',
