@@ -10,20 +10,25 @@
             TweetsService
         ]);
 
-    function TweetsService($http, $log) {
+    function TweetsService($http, $log, $filter) {
+        var tweetData = {content:null};
         var service = {
             loadTweet: loadTweet,
             saveLabel: saveLabel
         };
+        loadTweet(); //To load the json at the start
         return service;
 
 
         function loadTweet(){
-            var tweetData = {content:null};
-            $http.get("tweets.json").then(function(response) {
-                tweetData = data;
+            $http.get("/tweets.json").then(function(response) {
+                tweetData.content = data;
             });
-            return tweetData;
+        }
+
+        function loadSingleTweet(tweetID){
+            var result = $filter('filter')(tweetData.content, {id:tweetID})[0];
+            return result;
         }
 
         function saveLabel(id, label){
