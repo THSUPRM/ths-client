@@ -1,14 +1,22 @@
 from datetime import datetime
-import app
-
-db=app.db
+from app import db
 
 
-class User(db.Model):
+# Define a base model for other database tables to inherit
+class Base(db.Model):
+    __abstract__ = True
+    id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
+                              onupdate=db.func.current_timestamp())
+
+
+class User(Base):
     __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
-    email = db.Column('email', db.String(50), unique=True, index=True)
-    password = db.Column('password', db.String(15))
+    email = db.Column('email', db.String(50), unique=True, nullable=False)
+    password = db.Column('password', db.String(192), nullable=False)
+    phone = db.Column('phone', db.String(11))
     registered_on = db.Column('registered_on', db.DateTime)
     first_name = db.Column('first_name', db.String(15))
     last_name = db.Column('last_name', db.String(15))
@@ -36,4 +44,4 @@ class User(db.Model):
         return str(self.id)
 
     def __repr__(self):
-        return '<User %r>' % (self.first_name+self.last_name)
+        return '<User %r>' % (self.first_name + self.last_name)
