@@ -13,18 +13,17 @@ class Base(db.Model):
 
 class User(Base):
     __tablename__ = "users"
-    id = db.Column('user_id', db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True)
     email = db.Column('email', db.String(50), unique=True, nullable=False)
     password = db.Column('password', db.String(192), nullable=False)
     phone = db.Column('phone', db.String(11))
-    registered_on = db.Column('registered_on', db.DateTime)
     first_name = db.Column('first_name', db.String(15))
     last_name = db.Column('last_name', db.String(15))
 
-    def __init__(self, email, password, first_name, last_name):
+    def __init__(self, email, password, phone, first_name, last_name):
         self.email = email
         self.password = password
-        self.registered_on = datetime.utcnow()
+        self.phone = phone
         self.first_name = first_name
         self.last_name = last_name
 
