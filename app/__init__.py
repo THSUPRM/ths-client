@@ -17,6 +17,7 @@ vendor_bundle = Bundle(
     'bower_components/jquery/dist/jquery.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js',
+    'bower_components/angular-cookies/angular-cookies.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/moment/moment.js',
     filters='rjsmin',
@@ -26,6 +27,7 @@ assets.register('vendor', vendor_bundle)
 
 app_bundle = Bundle(
     './app.module.js',
+    './app.factory.js',
     './app.controller.js',
     'app/tweets/tweets.module.js',
     'app/tweets/tweets.controller.js',
@@ -33,6 +35,12 @@ app_bundle = Bundle(
     'app/auth/auth.module.js',
     'app/auth/auth.controller.js',
     'app/auth/auth.factory.js',
+    'app/profile/profile.module.js',
+    'app/profile/profile.controller.js',
+    'app/profile/profile.factory.js',
+    'app/about/about.module.js',
+    'app/about/about.controller.js',
+    'app/about/about.factory.js',
     filters='rjsmin',
     output='build/app.min.js'
 )
@@ -56,15 +64,23 @@ bundles = [vendor_bundle, app_bundle, style_bundle]
 @app.route('/about')
 @app.route('/register')
 @app.route('/login')
-@app.route('/tweets')
+@app.route('/tweet')
+@app.route('/profile')
 def home():
     return render_template('index.html')
 
-# Import auth module using its blueprint handler variable (auth_module)
-from app.auth.controllers import auth_module
+
+# Import modules using its blueprint handler variable
+from app.controllers.auth_controller import auth_module
+from app.controllers.tweets_controller import tweets_module
+from app.controllers.labels_controller import labels_module
+from app.controllers.profile_controller import profile_module
 
 # Register auth Blueprint
 app.register_blueprint(auth_module)
+app.register_blueprint(tweets_module)
+app.register_blueprint(labels_module)
+app.register_blueprint(profile_module)
 
 # Create DB Schema
 db.create_all()
