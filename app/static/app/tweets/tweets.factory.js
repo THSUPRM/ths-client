@@ -7,23 +7,39 @@
         .factory('TweetsService', [
             '$http',
             '$log',
+            'AppService',
             TweetsService
         ]);
 
-    function TweetsService($http, $log, $filter) {
+    function TweetsService($http, $log, $filter, AppService) {
         var tweetData = {content:null};
+        //var tweets = null;
+        var userId = null;
         var service = {
-            loadTweet: loadTweet,
-            saveLabel: saveLabel
+ //           loadTweet: loadTweet,
+            saveLabel: saveLabel,
+            getTweets: getTweets,
+            tweets : tweets
         };
-        loadTweet(); //To load the json at the start
+        //getTweets();//loadTweet(); //To load the json at the start
         return service;
 
 
-        function loadTweet(){
-            $http.get("/tweets.json").then(function(response) {
-                tweetData.content = data;
+        // function loadTweet(){
+        //     $http.get("/tweets.json").then(function(response) {
+        //         tweetData.content = data;
+        //     });
+        // }
+        function tweets(){
+            return tweetData;
+        }
+        function getTweets(id){
+            return $http.get("/tweets/assign_tweets/" + id).then(function(response){
+                tweetData = response.data;
+            }).catch(function (reason) {
+                $log.log('Error loading tweets. Reason: '+ reason.data);
             });
+            //$log.log("Tweets: " + tweets);
         }
 
         function loadSingleTweet(tweetID){
@@ -31,9 +47,8 @@
             return result;
         }
 
-        function saveLabel(id, label){
-            var newLabel = id + " : " + label;
-            return $http.post('', newLabel)
+        function saveLabel(tweetId, label, userId ){
+            return $http.post('/labels/label_tweet/' + tweetId + '/' + label + '/' +userId)
                 .then(labelComplete)
                 .catch(labelError);
         }
