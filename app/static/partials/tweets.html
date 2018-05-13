@@ -1,32 +1,37 @@
-<div id="Borge" class="w3-container person" style="display:none">
-  <br>
-    <h4><i></i>Sample Tweet 1</h4>
-      <button type="submit" onclick="document.getElementById('firstTab').style.display = 'none';document.getElementById('Borge').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Negative</button>
-		<button type="submit" onclick="document.getElementById('firstTab').style.display = 'none';document.getElementById('Borge').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Neutral</button>
-		<button type="submit" onclick="document.getElementById('firstTab').style.display = 'none';document.getElementById('Borge').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Positive</button>
-</div>
+<div class="row">
+<ul id="tweetsList">
+<li id="{{ tweet.id }}" ng-repeat=" tweet in tweets" ng-init="isAnswered = false"  ng-hide="isAnswered">
 
-<div id="Jane" class="w3-container person" style="display:none">
-  <br>
-    <h4><i></i>Sample Tweet 2</h4>
-      <button type="submit" onclick="document.getElementById('secondTab').style.display = 'none';document.getElementById('Jane').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Negative</button>
-		<button type="submit" onclick="document.getElementById('secondTab').style.display = 'none';document.getElementById('Jane').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Neutral</button>
-		<button type="submit" onclick="document.getElementById('secondTab').style.display = 'none';document.getElementById('Jane').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Positive</button>
-</div>
+    <form id="'form'+{{ tweet.id }}" ng-model= "entry"  ng-submit="isAnswered = true" >
+        <p>Text: {{ tweet.text }}</p>
+        <label>
+            <input type="radio" ng-model="classification" value="positive">
+            Positive
+        </label><br/>
+        <label>
+            <input type="radio" ng-model="classification" value="neutral">
+            Neutral
+        </label><br/>
+        <label>
+            <input type="radio" ng-model="classification" value="negative">
+            Negative
+        </label><br/>
+        <button ng-class="button" ng-click="submit( tweet.id, classification)" ng-if="classification !== undefined">Submit Classification</button>
+        <hr>
+        <hr>
 
-<div id="John" class="w3-container person" style="display:none">
-  <br>
-  <h4><i></i>Sample Tweet 3</h4>
-  <button type="submit" onclick="document.getElementById('thirdTab').style.display = 'none';document.getElementById('John').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Negative</button>
-		<button type="submit" onclick="document.getElementById('thirdTab').style.display = 'none';document.getElementById('John').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Neutral</button>
-		<button type="submit" onclick="document.getElementById('thirdTab').style.display = 'none';document.getElementById('John').innerHTML = 'Your classification has been recorded'"> <!--Write action-->
-			Positive</button>
+    </form>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
 </div>

@@ -1,5 +1,18 @@
-<h2> User {{user.first_name}} {{user.last_name}}</h2> <!--Check current_user-->
-<h3> Personal Info</h3>
-<p>First Name: {{user.first_name}}</p>
-<p>Last Name:  {{user.last_name}}</p>
-<p>Email: {{user.email}}</p>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>{{currentUser.first}} {{currentUser.last}}</h2> <!--Check current_user-->
+        <h3> Personal Info</h3>
+        <form>
+            First Name:
+            <input type="text" ng-model="first" ng-value="currentUser.first">
+            <br><br>
+            Last Name:
+            <input type="text" ng-model="last" ng-value="currentUser.last">
+            <br><br>
+            Email:
+            <input type="email"ng-model="email" ng-value="currentUser.email">
+            <br><br>
+            <button ng-click="changeValues()">Submit Changes</button>
+        </form>
+    </div>
+</div>
