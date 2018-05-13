@@ -7,6 +7,7 @@
     angular
         .module('thsClient', [
             'ui.router',
+            'ngCookies',
             'thsClient.tweets',
             'thsClient.auth'
         ])
@@ -31,6 +32,12 @@
                     controller: 'AppCtrl'
                 })
                 .state({
+                    name: 'app.login',
+                    url: '',
+                    templateUrl: '/static/partials/login.html',
+                    controller: 'AuthCtrl'
+                })
+                .state({
                     name: 'app.home',
                     url: '',
                     templateUrl: '/static/partials/home.html'
@@ -38,17 +45,26 @@
                 .state({
                     name: 'app.about',
                     url: '',
-                    templateUrl: '/static/partials/about.html'
-                })
-                .state({
-                    name: 'app.login',
-                    url: '',
-                    templateUrl: '/static/partials/login.html'
+                    templateUrl: '/static/partials/about.html',
+                    controller: 'AboutCtrl'
                 })
                 .state({
                     name: 'app.register',
                     url: '',
-                    templateUrl: '/static/partials/register.html'
+                    templateUrl: '/static/partials/register.html',
+                    controller: 'AuthCtrl'
+                })
+                .state({
+                    name: 'app.tweets',
+                    url: '',
+                    templateUrl: '/static/partials/tweets.html',
+                    controller: 'TweetsCtrl'
+                })
+                .state({
+                    name: 'app.profile',
+                    url:'',
+                    templateUrl: '/static/partials/edit.html',
+                    controller: 'ProfileCtrl'
                 });
 
             $urlRouterProvider.when('/', '/home');
