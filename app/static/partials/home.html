@@ -1,15 +1,10 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h2>Twitter Health Surveillance</h2>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h3>Most recent stats</h3>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <p>Previews</p>
-    </div>
+<div class="container">
+    <h2>Twitter Health Surveillance</h2>
+    <br>
+    <h3>Most recent stats:</h3>
+    <h4 ng-init="tweetsToLabel  = HomeCtrl.unlabeledTweets">Tweets to label:</h4>
+    <div class="flow-text" > {{ tweetsToLabel }}</div>
+    <h4 ng-init="labeledTweets  = HomeCtrl.labeledTweets">Tweets labeled:</h4>
+    <div class="flow-text">{{ labeledTweets }}</div>
+
 </div>

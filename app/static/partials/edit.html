@@ -1,18 +1,35 @@
 <div class="row">
-    <div class="col-xs-12">
-        <h2>{{currentUser.first}} {{currentUser.last}}</h2> <!--Check current_user-->
-        <h3> Personal Info</h3>
-        <form>
-            First Name:
-            <input type="text" ng-model="first" ng-value="currentUser.first">
-            <br><br>
-            Last Name:
-            <input type="text" ng-model="last" ng-value="currentUser.last">
-            <br><br>
-            Email:
-            <input type="email"ng-model="email" ng-value="currentUser.email">
-            <br><br>
-            <button ng-click="changeValues()">Submit Changes</button>
-        </form>
+    <div class="container" ng-init="editMode=false">
+        <div class="card blue darken-4">
+            <div class="row card-content white-text">
+                <span class="card-title center-align">Profile Information</span>
+                <h5 class="flow-text">Name: {{currentUser.first}} {{currentUser.last}}</h5>
+                <h5 class="flow-text">Email: {{currentUser.email}}</h5>
+                <div class="input-field col s6 " ng-show="editMode" >
+                    <input id="first" type="text" ng-model="first" class="validate ">
+                    <label for="first">First Name</label>
+                </div>
+                <div class="input-field col s6" ng-show="editMode">
+                    <input  id="last" type="text" ng-model="last" class="validate">
+                    <label for="last">Last Name</label>
+                </div>
+                <div class="input-field col s12" ng-show="editMode">
+                    <input  id="email" type="email" ng-model="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="card-action">
+                <div class="container center-align hide-on-small-only">
+                    <a class="waves-effect green darken-1 btn" ng-click="editMode=true" ng-show="!editMode">Edit</a>
+                    <a class="waves-effect red darken-1 btn" ng-click="editMode=false" ng-show="editMode">Cancel</a>
+                    <a class="waves-effect green darken-1 btn" ng-click="changeValues(); editMode=false" ng-show="editMode">Submit</a>
+                </div>
+                <div class="hide-on-med-and-up">
+                    <a class="waves-effect green darken-1 btn" ng-click="editMode=true" ng-show="!editMode">Edit</a>
+                    <a class="waves-effect red darken-1 btn" ng-click="editMode=false" ng-show="editMode">Cancel</a>
+                    <a class="waves-effect green darken-1 btn" ng-click="changeValues(); editMode=false" ng-show="editMode">Submit</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

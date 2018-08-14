@@ -1,0 +1,36 @@
+<div class="row">
+    <nav class="blue darken-4 col s12" role="navigation">
+        <div class=" nav-wrapper">
+            <div class="row">
+                <ul >
+                    <li><a class="flow-text" ui-sref=".home"><i class="material-icons flow-text">home</i></a></li>
+                    <li><a class="flow-text" ui-sref=".profile" ng-show="isLoggedIn">{{ currentUser.username }}</a> </li>
+                    <li><a class="flow-text" ui-sref=".login" ng-hide="isLoggedIn">Login</a></li>
+                    <li><a class="flow-text" ui-sref=".register" ng-hide="isLoggedIn">Register</a></li>
+                    <li><a class="flow-text" ui-sref=".tweets" ng-show="isLoggedIn">Tweets</a></li>
+                    <li><a class="flow-text" ui-sref=".about">About</a></li>
+                    <li class="hide-on-med-and-down pull-right"><a class="hide-on-med-and-down pull-right flow-text" ng-click="logout()" ng-show="isLoggedIn" ui-sref=".login"><i class="material-icons flow-text">exit_to_app</i></a></li>
+                    <li class="hide-on-large-only"><a class="hide-on-large-only " ng-click="logout()" ng-show="isLoggedIn" ui-sref=".login"><i class="material-icons flow-text">exit_to_app</i></a></li>
+
+                </ul>
+                <!--<ul class="center-align hide-on-large-only " id="mobile-demo">
+                    <li><a class="flow-text" ui-sref=".home"><i class="material-icons flow-text">home</i></a></li>
+                    <li><a class=" flow-text" ui-sref=".profile" ng-show="isLoggedIn">{{ currentUser.username }}</a> </li>
+                    <li><a class="col s1 flow-text" ui-sref=".login" ng-hide="isLoggedIn">Login</a></li>
+                    <li><a class="col s1 flow-text" ui-sref=".register" ng-hide="isLoggedIn">Register</a></li>
+                    <li><a class="col s1 flow-text" ui-sref=".tweets" ng-show="isLoggedIn">Tweets</a></li>
+                    <li><a  class="col s1 flow-text" ui-sref=".about">About</a></li>
+                    <li><a class="col s1 flow-text" ng-click="logout()" ng-show="isLoggedIn" ui-sref=".login">Logout</a></li>
+                </ul>-->
+
+            </div>
+        </div>
+    </nav>
+
+    <ui-view class="container"></ui-view>
+    <footer class="footer">
+        <div class="container-fluid text-center">
+            Provided by <a href="https://github.com/THSUPRM/ths-client">THS UPRM</a>
+        </div>
+    </footer>
+</div>

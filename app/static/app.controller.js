@@ -15,6 +15,17 @@
     function AppController($scope, $log, AppService, $state) {
         $log.log('Hello World from the App Controller using the $log Service');
         //$log.log(AppService.service.currentUser);
+        if(AppService.currentUser.username !== undefined ){
+            $scope.isLoggedIn = true;
+            $scope.currentUser = AppService.currentUser;
+            if(localStorage.getItem("state") !== undefined){
+                //$state.go(AppService.loadState());
+                $state.go(localStorage.getItem("state"));
+            } else{
+                $state.go('app.home');
+            }
+        }
+
         $scope.isLoggedIn = AppService.isLoggedIn();
         $scope.currentUser = AppService.currentUser;
         $scope.logout = function(){
@@ -22,7 +33,8 @@
             $scope.isLoggedIn = false;
             $scope.currentUser = {};
             $state.go('app.login');
-        }
+        };
+
 
 
     }

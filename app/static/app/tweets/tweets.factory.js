@@ -12,16 +12,21 @@
         ]);
 
     function TweetsService($http, $log, $filter, AppService) {
-        var tweetData = {content:null};
+        var tweetData = [];
+        var currentTweetIndx = 0;
+        var currentTweet = {};
         //var tweets = null;
         var userId = null;
         var service = {
  //           loadTweet: loadTweet,
             saveLabel: saveLabel,
             getTweets: getTweets,
-            tweets : tweets
+            tweets : tweets,
+            nextTweet: nextTweet,
+            currentTweet: currentTweet
         };
         //getTweets();//loadTweet(); //To load the json at the start
+
         return service;
 
 
@@ -30,12 +35,18 @@
         //         tweetData.content = data;
         //     });
         // }
+
+        function nextTweet(){
+            currentTweetIndx++;
+        }
         function tweets(){
             return tweetData;
         }
+
         function getTweets(id){
             return $http.get("/tweets/assign_tweets/" + id).then(function(response){
                 tweetData = response.data;
+                currentTweet = tweetData[0];
             }).catch(function (reason) {
                 $log.log('Error loading tweets. Reason: '+ reason.data);
             });

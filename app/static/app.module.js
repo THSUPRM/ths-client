@@ -28,7 +28,7 @@
                     name: 'app',
                     abstract: true,
                     url: '/',
-                    templateUrl: '/static/app.html',
+                    templateUrl: '/static/index.html',
                     controller: 'AppCtrl'
                 })
                 .state({
@@ -40,7 +40,8 @@
                 .state({
                     name: 'app.home',
                     url: '',
-                    templateUrl: '/static/partials/home.html'
+                    templateUrl: '/static/partials/home.html',
+                    controller: 'HomeCtrl'
                 })
                 .state({
                     name: 'app.about',

@@ -15,7 +15,8 @@
 
     function ProfileController($scope, $log, ProfileService, AppService, $state) {
         $log.log('Hello World from the Profile Controller using the $log Service');
-        AppService.saveState('app.profile');
+        //AppService.saveState('app.profile');
+        localStorage.setItem("state", $state.current.name);
         $scope.changeValues = function(){
             if($scope.first !== undefined)
                 AppService.updateName($scope.first);

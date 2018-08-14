@@ -35,7 +35,9 @@
 
 
         function saveState(state){
+            $cookies.remove("state");
             $cookies.put("state", state);
+            $log.log('State ' + state + ' saved.' );
         }
         function loadState(){
             return $cookies.get("state");
@@ -72,8 +74,8 @@
         }
 
         function isLoggedIn() {
-            $log.log(service.currentUser !== undefined);
-            return service.currentUser !== undefined;
+            $log.log(service.currentUser.username !== undefined);
+            return service.currentUser.username !== undefined;
         }
 
         function updateName(newName){
@@ -110,6 +112,7 @@
             $log.log('Logging Out: ' + service.currentUser.email);
             service.currentUser = {};
             clearCookieData();
+            localStorage.clear();
             return $http.get('/auth/logout')
                 .then(logoutComplete)
                 .catch(logoutError);

@@ -20,6 +20,9 @@ vendor_bundle = Bundle(
     'bower_components/angular-cookies/angular-cookies.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/moment/moment.js',
+    'bower_components/materialize/dist/js/materialize.js',
+    'bower_components/materialize/js/initial.js',
+    'bower_components/materialize/js/sideNav.js',
     filters='rjsmin',
     output='build/vendor.min.js'
 )
@@ -41,6 +44,9 @@ app_bundle = Bundle(
     'app/about/about.module.js',
     'app/about/about.controller.js',
     'app/about/about.factory.js',
+    'app/home/home.module.js',
+    'app/home/home.controller.js',
+    'app/home/home.factory.js',
     filters='rjsmin',
     output='build/app.min.js'
 )
@@ -50,6 +56,9 @@ style_bundle = Bundle(
     'bower_components/bootstrap/dist/css/bootstrap.css',
     'bower_components/bootstrap/dist/css/bootstrap-theme.css',
     'bower_components/font-awesome/css/font-awesome.css',
+    'bower_components/materialize/dist/css/materialize.css',
+    'bower_components/materialize/templates/starter-template/css/style.css',
+
     filters='cssmin',
     output='build/style.min.css'
 )
@@ -75,8 +84,10 @@ from app.controllers.auth_controller import auth_module
 from app.controllers.tweets_controller import tweets_module
 from app.controllers.labels_controller import labels_module
 from app.controllers.profile_controller import profile_module
+from app.controllers.home_controller import home_module
 
 # Register auth Blueprint
+app.register_blueprint(home_module)
 app.register_blueprint(auth_module)
 app.register_blueprint(tweets_module)
 app.register_blueprint(labels_module)
