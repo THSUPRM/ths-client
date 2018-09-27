@@ -12,7 +12,7 @@ def create_connection(db_file):
 	try:
 		conn = sqlite3.connect(db_file)
 		return conn
-	except Error as e:
+	except sqlite3.Error as e:
 		print(e)
 	return None
 
@@ -24,7 +24,7 @@ def insert_tweet(conn, tweet):
 	tw = (tweet.twitter_id, tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
 	try:
 		cur.execute(sql,tw)
-	except Error as e:
+	except sqlite3.Error as e:
 		print(e)
 
 	return cur.lastrowid

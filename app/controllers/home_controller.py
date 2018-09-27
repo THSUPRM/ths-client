@@ -85,7 +85,7 @@ def insert_tweet(conn, tweet):
 
 @home_module.route('/get-tweets-from-hive/', methods=['GET'])
 def get_tweets_from_hive():
-	try:
+	# try:
 		app.logger.info(subprocess.check_output(['spark-submit', 'test.py']))
 		# database = "/home/manuelr/ths-client/app/app.db"
 		# conn = create_connection(database)
@@ -98,7 +98,7 @@ def get_tweets_from_hive():
 		# 	for tweet in tweets:
 		# 		insert_tweet(conn,tweet)
 		return Response("Succeeded getting tweets from HIVE", status=200, mimetype="application/text")
-	except:
-			result = "Failed getting tweets from HIVE"
+	# except:
+	# 		result = "Failed getting tweets from HIVE"
 
-			return Response(result, status=500, mimetype="application/text")
+			# return Response(result, status=500, mimetype="application/text")
