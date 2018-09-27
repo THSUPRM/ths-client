@@ -23,6 +23,7 @@ vendor_bundle = Bundle(
     'bower_components/materialize/dist/js/materialize.js',
     'bower_components/materialize/js/initial.js',
     'bower_components/materialize/js/sideNav.js',
+    'web/js/bootstrap.js',
     filters='rjsmin',
     output='build/vendor.min.js'
 )
@@ -58,6 +59,10 @@ style_bundle = Bundle(
     'bower_components/font-awesome/css/font-awesome.css',
     'bower_components/materialize/dist/css/materialize.css',
     'bower_components/materialize/templates/starter-template/css/style.css',
+    'web/css/style.css',
+    'web/css/theme.css',
+    'web/css/clndr.css',
+
 
     filters='cssmin',
     output='build/style.min.css'
