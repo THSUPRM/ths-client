@@ -1,4 +1,5 @@
 from flask import request, Blueprint, Response
+import json
 import csv
 # Import the database object (db) from the main application module
 # and the app object to initialize the flask_login manager
@@ -44,13 +45,17 @@ def assign_tweets(user_id):
     else:
         tweets_to_label = Tweet.query.all()
     app.logger.info("tweets_to_label: " + str(tweets_to_label))
-    result = '['
+    result = []
     for tweet in tweets_to_label:
-        result += tweet.get_fields() + ' , '
-    result = result[0:len(result) - 2] + ']'
-    app.logger.info("tweets: " + result)
+        tw = {}
+        tw['id'] = tweet.id
+        tw['text'] = tweet.text
+        result.append(tw)
+
+    json_data = json.dumps(result)
+    app.logger.info("tweets: " + json_data)
     if len(result) > 2:
-        return Response(result, status=200, mimetype="application/json")
+        return Response(json_data, status=200, mimetype="application/json")
     else:
         return Response("No tweets to label", status=500, mimetype="application/text")
 
