@@ -1,4 +1,5 @@
 from flask import request, Blueprint, Response
+import subprocess
 
 import csv
 # Import the database object (db) from the main application module
@@ -85,16 +86,17 @@ def insert_tweet(conn, tweet):
 @home_module.route('/get-tweets-from-hive/', methods=['GET'])
 def get_tweets_from_hive():
 	try:
-		database = "/home/manuelr/ths-client/app/app.db"
-		conn = create_connection(database)
-		sc = SparkContext(appName='Insert Tweets')
-		spark = getSparkSessionInstance(sc.getConf())
-		spark.sql('use thsfulltext')
-		df = spark.sql('select twitter_id, full_text from tweet limit 5000')
-		tweets = df.rdd.collect()
-		with conn:
-			for tweet in tweets:
-				insert_tweet(conn,tweet)
+		app.logger.info(subprocess.check_output(['spark-submit', 'test.py']))
+		# database = "/home/manuelr/ths-client/app/app.db"
+		# conn = create_connection(database)
+		# sc = SparkContext(appName='Insert Tweets')
+		# spark = getSparkSessionInstance(sc.getConf())
+		# spark.sql('use thsfulltext')
+		# df = spark.sql('select twitter_id, full_text from tweet limit 5000')
+		# tweets = df.rdd.collect()
+		# with conn:
+		# 	for tweet in tweets:
+		# 		insert_tweet(conn,tweet)
 		return Response("Succeeded getting tweets from HIVE", status=200, mimetype="application/text")
 	except:
 			result = "Failed getting tweets from HIVE"
