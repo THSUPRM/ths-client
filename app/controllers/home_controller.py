@@ -1,5 +1,4 @@
 from flask import request, Blueprint, Response
-import subprocess
 
 import csv
 # Import the database object (db) from the main application module
@@ -57,48 +56,4 @@ def tweets_to_label(user_id):
 
 	return Response(result, status=200, mimetype="application/json")
 
-# def getSparkSessionInstance(sparkConf):
-# 	if('sparkSessionInstance' not in globals()):
-# 		globals()['sparkSessionInstance'] = SparkSession.builder.config(conf=sparkConf).enableHiveSupport().getOrCreate()
-# 	return globals()['sparkSessionInstance']
 
-def create_connection(db_file):
-	try:
-		conn = sqlite3.connect(db_file)
-		return conn
-	except sqlite3.Error as e:
-		app.logger.error(e)
-	return None
-
-
-def insert_tweet(conn, tweet):
-	sql = '''INSERT OR IGNORE INTO tweets(id, text,date_created, date_modified) 
-		VALUES(?,?,?,?) '''
-	cur = conn.cursor()
-	tw = (tweet.twitter_id, tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
-	try:
-		cur.execute(sql,tw)
-	except sqlite3.Error as e:
-		print(e)
-
-	return cur.lastrowid
-
-@home_module.route('/get-tweets-from-hive/', methods=['GET'])
-def get_tweets_from_hive():
-	# try:
-		app.logger.info(subprocess.check_output(['spark-submit', 'test.py']))
-		# database = "/home/manuelr/ths-client/app/app.db"
-		# conn = create_connection(database)
-		# sc = SparkContext(appName='Insert Tweets')
-		# spark = getSparkSessionInstance(sc.getConf())
-		# spark.sql('use thsfulltext')
-		# df = spark.sql('select twitter_id, full_text from tweet limit 5000')
-		# tweets = df.rdd.collect()
-		# with conn:
-		# 	for tweet in tweets:
-		# 		insert_tweet(conn,tweet)
-		return Response("Succeeded getting tweets from HIVE", status=200, mimetype="application/text")
-	# except:
-	# 		result = "Failed getting tweets from HIVE"
-
-			# return Response(result, status=500, mimetype="application/text")
