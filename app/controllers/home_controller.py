@@ -10,8 +10,8 @@ from app.models.tweets_model import Tweet
 from app.models.labels_model import Label
 import sqlite3
 from datetime import datetime
-from pyspark import SparkConf, SparkContext
-from pyspark.sql import SparkSession, Row
+# from pyspark import SparkConf, SparkContext
+# from pyspark.sql import SparkSession, Row
 
 
 # Define the blueprint: 'home', set its url prefix: app.url/home
@@ -57,10 +57,10 @@ def tweets_to_label(user_id):
 
 	return Response(result, status=200, mimetype="application/json")
 
-def getSparkSessionInstance(sparkConf):
-	if('sparkSessionInstance' not in globals()):
-		globals()['sparkSessionInstance'] = SparkSession.builder.config(conf=sparkConf).enableHiveSupport().getOrCreate()
-	return globals()['sparkSessionInstance']
+# def getSparkSessionInstance(sparkConf):
+# 	if('sparkSessionInstance' not in globals()):
+# 		globals()['sparkSessionInstance'] = SparkSession.builder.config(conf=sparkConf).enableHiveSupport().getOrCreate()
+# 	return globals()['sparkSessionInstance']
 
 def create_connection(db_file):
 	try:
