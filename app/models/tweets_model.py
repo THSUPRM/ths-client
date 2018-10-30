@@ -14,18 +14,19 @@ class Base(db.Model):
 
 class Tweet(Base):
     __tablename__ = "tweets"
-    id = db.Column('id', db.Integer, primary_key=True)
     text = db.Column('text', db.String(300), nullable=False)
+    tweet_id = db.Column('tweet_id', db.String(300), nullable=False)
 
-    def __init__(self, id, text):
-        self.id = id
+
+    def __init__(self, tweet_id, text):
         self.text = text
+        self.tweet_id = tweet_id
 
     def get_id(self):
-        return str(self.id)
+        return self.id
 
     def get_fields(self):
-        return '{' + '"id": "{0}" , "text": "{1}" '.format(self.id, self.text) + '}'
+        return '{' + '"id": "{0}" , "text": "{1}" , "tweet_id": "{2}" '.format(self.id, self.text, self.tweet_id) + '}'
 
     def __repr__(self):
         return '<Tweet %r>' % self.id

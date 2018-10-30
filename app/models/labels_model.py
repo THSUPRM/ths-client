@@ -15,7 +15,7 @@ class Label(Base):
         self.labeled_by = labeled_by
 
     def get_id(self):
-        return str(self.id)
+        return self.id
 
     def get_fields(self):
         return '{' + '"tweet_id": "{0}" , "label": "{1}" , "labeled_by": "{2}" '.format(self.tweet_id, self.label,

@@ -22,9 +22,9 @@ def create_connection(db_file):
 
 
 def insert_tweet(conn, tweet):
-    sql = '''INSERT OR IGNORE INTO tweets(id, text,date_created, date_modified) VALUES(?,?,?,?) '''
+    sql = '''INSERT OR IGNORE INTO tweets(tweet_id, text,date_created, date_modified) VALUES(?,?,?,?) '''
     cur = conn.cursor()
-    tw = (tweet.twitter_id, tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
+    tw = (str(tweet.twitter_id), tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
     try:
         cur.execute(sql, tw)
     except sqlite3.Error as e:
@@ -39,12 +39,11 @@ def main():
     sc = SparkContext(appName='Insert Tweets')
     spark = get_spark_session_instance(sc.getConf())
     spark.sql('use thsfulltext')
-    df = spark.sql('select twitter_id, full_text from tweet')
-    tweets = df.select(sort_array(df.twitter_id)).collect().sort(key=lambda tup: tup[0])
-    i = 1
+    df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
+    tweets = df.select(sort_array(df.twitter_id, asc=False)).collect()
     limit = 0
     with conn:
-        while limit < i * 5000:
+        while limit < 5000:
             insert_tweet(conn, tweets[limit])
             limit = limit + 1
 

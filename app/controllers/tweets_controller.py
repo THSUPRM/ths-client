@@ -67,7 +67,7 @@ def store_tweet():
     text = data["text"]
     req = request
     tweet = Tweet(id, text)
-    tweet_result = Tweet.query.filter_by(id=request.json['id']).first()
+    tweet_result = Tweet.query.filter_by(tweet_id=request.json['id']).first()
 
     if tweet_result is None :
         db.session.add(tweet)
