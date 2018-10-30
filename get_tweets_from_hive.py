@@ -3,7 +3,6 @@ from datetime import datetime
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession, Row
 from pyspark.sql.functions import sort_array
-from app.models.tweets_model import Tweet
 
 
 def get_spark_session_instance(sparkConf):
@@ -25,7 +24,10 @@ def create_connection(db_file):
 def insert_tweet(conn, tweet):
     sql = '''INSERT OR IGNORE INTO tweets(tweet_id, text,date_created, date_modified) VALUES(?,?,?,?) '''
     cur = conn.cursor()
-    tweet_result = Tweet.query.filter_by(tweet_id=str(tweet.twitter_id)).first()
+    sql_select = ''' SELECT tweet_id FROM TWEETS WHERE tweet_id =?'''
+
+    cur.execute(sql_select, str(tweet.twitter_id))
+    tweet_result = cur.fetchone()
     tw = (str(tweet.twitter_id), tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
 
     try:
