@@ -24,9 +24,9 @@ def create_connection(db_file):
 def insert_tweet(conn, tweet):
     sql = '''INSERT OR IGNORE INTO tweets(tweet_id, text,date_created, date_modified) VALUES(?,?,?,?) '''
     cur = conn.cursor()
-    sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id =?'''
+    sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id = ?'''
 
-    cur.execute(sql_select, str(tweet.twitter_id))
+    cur.execute(sql_select, [str(tweet.twitter_id)])
     tweet_result = cur.fetchone()
     tw = (str(tweet.twitter_id), tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
 
