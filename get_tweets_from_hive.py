@@ -48,7 +48,7 @@ def main():
     spark = get_spark_session_instance(sc.getConf())
     spark.sql('use thsfulltext')
     df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
-    tweets = df.select(sort_array(df.twitter_id, asc=False)).collect()
+    tweets = df.collect()
     limit = 0
     with conn:
         while limit < 5000:
