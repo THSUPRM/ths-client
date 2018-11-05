@@ -24,7 +24,7 @@ def create_connection(db_file):
 def insert_tweet(conn, tweet):
     sql = '''INSERT OR IGNORE INTO tweets(tweet_id, text,date_created, date_modified) VALUES(?,?,?,?) '''
     cur = conn.cursor()
-    sql_select = ''' SELECT tweet_id FROM TWEETS WHERE tweet_id =?'''
+    sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id =?'''
 
     cur.execute(sql_select, str(tweet.twitter_id))
     tweet_result = cur.fetchone()
@@ -51,7 +51,7 @@ def main():
     tweets = df.collect()
     limit = 0
     with conn:
-        while limit < 5000:
+        while limit < 10:
             insert_tweet(conn, tweets[limit])
             limit = limit + 1
 
