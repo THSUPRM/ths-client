@@ -47,7 +47,7 @@ def main():
     sc = SparkContext(appName='Insert Tweets')
     spark = get_spark_session_instance(sc.getConf())
     spark.sql('use thsfulltext')
-    df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
+    df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet LIMIT 10')
     tweets = df.collect()
     limit = 0
     with conn:
