@@ -49,6 +49,7 @@ def main():
     spark.sql('use thsfulltext')
     df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
     df = df.filter(df.inserted_tweet.between(str(max_date), str(datetime.today()))).orderBy(df.inserted_tweet.asc())
+    count = df.count()
     tweets = df.collect()
     sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id = ?'''
     limit = 0
@@ -56,10 +57,12 @@ def main():
     with conn:
         while limit < 100:
 
-            while conn.cursor().execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is None:
+            while conn.cursor().execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None \
+                    and index < count:
                 index = index + 1
                 print('tweet already inserted')
-
+            if index >= count:
+                break
             insert_tweet(conn, tweets[index])
 
             limit = limit + 1
