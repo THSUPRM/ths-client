@@ -58,7 +58,7 @@ def main():
     limit = 0
     index = 0
     with conn:
-        while limit < 5000:
+        while limit < 50:
 
             while cur.execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None \
                     and index < count:
