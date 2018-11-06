@@ -49,8 +49,8 @@ def main():
     spark.sql('use thsfulltext')
     df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
     df = df.filter(df.inserted_tweet.between(str(max_date), str(datetime.today()))).orderBy(df.inserted_tweet.asc())
-    count = df.count()
     tweets = df.collect()
+    count = len(tweets)
     sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id = ?'''
     limit = 0
     index = 0
