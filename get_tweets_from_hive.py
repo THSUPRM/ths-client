@@ -60,8 +60,8 @@ def main():
     with conn:
         while limit < 50:
 
-            while cur.execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None \
-                    and index < count:
+            while index < count\
+                    and cur.execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None:
                 index = index + 1
                 print('tweet already inserted')
             if index >= count:
