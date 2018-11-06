@@ -36,12 +36,13 @@ def insert_tweet(conn, tweet):
 
 
 def main():
-    database = "app/app.db"
+    database = "/home/manuelr/ths-client/app/app.db"
     conn = create_connection(database)
     sc = SparkContext(appName='Insert Tweets')
     spark = get_spark_session_instance(sc.getConf())
+    cur = conn.cursor()
 
-    max_date = conn.cursor().execute(''' SELECT MAX(date_created) FROM tweets ''').fetchone()
+    max_date = cur.execute(''' SELECT MAX(date_created) FROM tweets ''').fetchone()
 
     if max_date is None:
         max_date = '2018-10-01 00:00:00.000'
@@ -57,7 +58,7 @@ def main():
     with conn:
         while limit < 5000:
 
-            while conn.cursor().execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None \
+            while cur.execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None \
                     and index < count:
                 index = index + 1
                 print('tweet already inserted')
