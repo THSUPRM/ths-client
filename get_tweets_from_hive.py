@@ -42,10 +42,12 @@ def main():
     spark = get_spark_session_instance(sc.getConf())
     cur = conn.cursor()
 
-    max_date = cur.execute(''' SELECT MAX(date_created) FROM tweets ''').fetchone()
+    result = cur.execute(''' SELECT MAX(date_modified), date_created FROM tweets ''').fetchone()
 
-    if max_date is None:
+    if result is None:
         max_date = '2018-10-01 00:00:00.000'
+    else:
+        max_date = result[1]
 
     spark.sql('use thsfulltext')
     df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
@@ -63,6 +65,7 @@ def main():
                 index = index + 1
                 print('tweet already inserted')
             if index >= count:
+                print('There are no more tweets to insert')
                 break
             insert_tweet(conn, tweets[index])
 
