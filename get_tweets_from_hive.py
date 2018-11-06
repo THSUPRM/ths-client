@@ -36,7 +36,7 @@ def insert_tweet(conn, tweet):
 
 
 def main():
-    database = "/home/manuelr/ths-client/app/app.db"
+    database = "app/app.db"
     conn = create_connection(database)
     sc = SparkContext(appName='Insert Tweets')
     spark = get_spark_session_instance(sc.getConf())
@@ -55,7 +55,7 @@ def main():
     limit = 0
     index = 0
     with conn:
-        while limit < 100:
+        while limit < 5000:
 
             while conn.cursor().execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None \
                     and index < count:
