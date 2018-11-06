@@ -44,7 +44,7 @@ def main():
 
     result = cur.execute(''' SELECT MAX(date_modified), date_created FROM tweets ''').fetchone()
 
-    if result is None:
+    if result[1] is None:
         max_date = '2018-10-01 00:00:00.000'
     else:
         max_date = result[1]
@@ -60,10 +60,11 @@ def main():
     with conn:
         while limit < 50:
 
-            while index < count\
-                    and cur.execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None:
+            while index < count and cur.execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is not None:
+
                 index = index + 1
                 print('tweet already inserted')
+
             if index >= count:
                 print('There are no more tweets to insert')
                 break
