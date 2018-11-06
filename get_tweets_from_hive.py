@@ -46,12 +46,19 @@ def main():
     conn = create_connection(database)
     sc = SparkContext(appName='Insert Tweets')
     spark = get_spark_session_instance(sc.getConf())
+
+    max_date = conn.cursor().execute(''' SELECT MAX(date_created) FROM tweets ''').fetchone()
+
+    if max_date is None:
+        max_date = '2018-10-01 00:00:00.000'
+
     spark.sql('use thsfulltext')
-    df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet LIMIT 10')
+    df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
+    df = df.filter(df.inserted_tweet.between(str(max_date), str(datetime.today())))
     tweets = df.collect()
     limit = 0
     with conn:
-        while limit < 10:
+        while limit < 100:
             insert_tweet(conn, tweets[limit])
             limit = limit + 1
 
