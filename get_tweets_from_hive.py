@@ -22,19 +22,13 @@ def create_connection(db_file):
 
 
 def insert_tweet(conn, tweet):
-    sql = '''INSERT OR IGNORE INTO tweets(tweet_id, text,date_created, date_modified) VALUES(?,?,?,?) '''
+    sql = '''INSERT OR IGNORE INTO tweets(tweet_id, text, date_created, date_modified) VALUES(?,?,?,?) '''
     cur = conn.cursor()
-    sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id = ?'''
 
-    cur.execute(sql_select, [str(tweet.twitter_id)])
-    tweet_result = cur.fetchone()
-    tw = (str(tweet.twitter_id), tweet.full_text, datetime.today().__str__(), datetime.today().__str__())
+    tw = (str(tweet.twitter_id), tweet.full_text, str(tweet.inserted_tweet), datetime.today().__str__())
 
     try:
-        if tweet_result is None:
-            cur.execute(sql, tw)
-        else:
-            print('tweet already inserted')
+        cur.execute(sql, tw)
     except sqlite3.Error as e:
         print(e)
 
@@ -54,13 +48,22 @@ def main():
 
     spark.sql('use thsfulltext')
     df = spark.sql('select twitter_id, full_text, inserted_tweet from tweet')
-    df = df.filter(df.inserted_tweet.between(str(max_date), str(datetime.today())))
+    df = df.filter(df.inserted_tweet.between(str(max_date), str(datetime.today()))).orderBy(df.inserted_tweet.asc())
     tweets = df.collect()
+    sql_select = ''' SELECT tweet_id FROM tweets WHERE tweet_id = ?'''
     limit = 0
+    index = 0
     with conn:
         while limit < 100:
-            insert_tweet(conn, tweets[limit])
+
+            while conn.cursor().execute(sql_select, [str(tweets[index].twitter_id)]).fetchone() is None:
+                index = index + 1
+                print('tweet already inserted')
+
+            insert_tweet(conn, tweets[index])
+
             limit = limit + 1
+            index = index + 1
 
 
 if __name__ == '__main__':
