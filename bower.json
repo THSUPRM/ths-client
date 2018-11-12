@@ -9,6 +9,7 @@
   "homepage": "https://github.com/THSUPRM/ths-client",
   "dependencies": {
     "angular": "1.7.5",
+    "jQuery": "3.3.1",
     "requirejs": "2.3.3",
     "angular-ui-router": "1.0.20",
     "angular-material": "1.1.10",
