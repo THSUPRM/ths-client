@@ -1,7 +1,5 @@
 (function() {
-    /**
-     * Created by diegofigs on 5/11/17.
-     */
+
     'use strict';
 
     angular
@@ -9,7 +7,9 @@
             'ui.router',
             'ngCookies',
             'thsClient.tweets',
-            'thsClient.auth'
+            'thsClient.auth',
+            'ngMaterial',
+            'ngMessages'
         ])
         .config([
             '$locationProvider',
@@ -28,7 +28,7 @@
                     name: 'app',
                     abstract: true,
                     url: '/',
-                    templateUrl: '/static/index.html',
+                    templateUrl: '/static/app.html',
                     controller: 'AppCtrl'
                 })
                 .state({

@@ -1,8 +1,13 @@
-<div class="row">
-    <div class="container" ng-init="editMode=false">
-        <div class="card blue darken-4">
+<div>
+   <!-- <div class="container" ng-init="editMode=false">
+        <md-card style="color: #29aae3">
+            <md-card-title>
+                <md-card-title-text>
+                    <h4 class="md-headline center-align">Profile Information</h4>
+                </md-card-title-text>
+            </md-card-title>
             <div class="row card-content white-text">
-                <span class="card-title center-align">Profile Information</span>
+
                 <h5 class="flow-text">Name: {{currentUser.first}} {{currentUser.last}}</h5>
                 <h5 class="flow-text">Email: {{currentUser.email}}</h5>
                 <div class="input-field col s6 " ng-show="editMode" >
@@ -30,6 +35,73 @@
                     <a class="waves-effect green darken-1 btn" ng-click="changeValues(); editMode=false" ng-show="editMode">Submit</a>
                 </div>
             </div>
-        </div>
+        </md-card>
     </div>
+-->
+            <md-content class="md-padding" >
+        <div flex="33" flex-offset="33"   layout="column" >
+            <md-card class="md-raised" style="background-color: #29aae3; color: white">
+
+                    <md-card-title>
+                        <md-card-title-text>
+                            <h3 class="md-headline" style="text-align: center" >Profile Information</h3>
+
+                        </md-card-title-text>
+                    </md-card-title>
+                <md-card-content style="text-align: left">
+                    <h5 class="flow-text">Name: {{currentUser.first}} {{currentUser.last}}</h5>
+                    <h5 class="flow-text">Email: {{currentUser.email}}</h5>
+                    <h5 class="flow-text">Username: {{currentUser.username}}</h5>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center">
+                    <md-button class="md-raised"  ng-click="showPrerenderedDialog($event)" style="background-color: #343a40; color: white">
+						<i class="material-icons">edit</i>
+                        Edit Information
+                    </md-button>
+                </md-card-actions>
+
+            </md-card>
+
+        </div>
+        </md-content>
+
+    <div style="visibility: hidden">
+    <div class="md-dialog-container" id="myDialog">
+      <md-dialog layout-padding style="text-align: center" >
+        <h4>Edit Profile Information</h4>
+          <md-dialog-content style="align-items: stretch; display: flex">
+
+              <input id="first" type="text" ng-model="first" class="validate " ng-value="currentUser.first">
+              <label for="first">First Name</label>
+
+              <br/>
+
+              <input  id="last" type="text" ng-model="last" class="validate" ng-value="currentUser.last">
+              <label for="last">Last Name</label>
+
+              <br/>
+              <div class="panel-warning " align="center" style="color: red" >{{ validEmail }} </div>
+              <input id="email" type="email" ng-model="email" class="validate" ng-value=" currentUser.email">
+              <label for="first">Email &nbsp;&nbsp;</label>
+
+              <br/>
+              <div class="panel-warning " align="center" style="color: red" ng-init="validUsername = ''" ng-bind="validUsername"> </div>
+              <input  id="username" type="text" ng-model="username" class="validate" ng-value="currentUser.username">
+              <label for="last">Username</label>
+          </md-dialog-content>
+          <md-dialog-actions class="row" layout-align="center">
+              <md-button class="md-raised"  ng-click="changeValues()" style="background-color: #343a40; color: white">
+						<i class="material-icons">edit</i>
+                        Save Changes
+              </md-button>
+              <md-button class="md-raised" ng-click="closeDialog()" style="background-color: #343a40; color: white">
+						<i class="material-icons">cancel</i>
+                        Cancel
+              </md-button>
+
+              </md-dialog-actions>
+      </md-dialog>
+    </div>
+  </div>
+
 </div>

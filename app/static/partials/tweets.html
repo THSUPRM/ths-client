@@ -1,23 +1,92 @@
-<div class="row " ng-init="tweet = TweetsService.currentTweet">
-    <div class="col s12 m8 l6 offset-l3 offset-m2">
-        <div class="row">
-            <div class="card blue darken-4">
-                <div class="container card-content white-text">
-                    <span class="card-title center-align" ng-show="hasTweets">Tweet ID: {{ tweet.id }}</span>
-                    <span class="card-title center-align" ng-hide="hasTweets"><i class="large material-icons center-align">sentiment_very_dissatisfied</i></span>
-                    <h4 ng-hide="hasTweets">You don't have more tweets to label. Come back again later or refresh this page to check again.</h4>
-                    <p class="flow-text" id="'tweet' + {{ tweet.id }}"  ng-show="hasTweets" >"{{ tweet.text }}"</p>
-                </div>
-                <div class="card-action">
-                    <div class="container center-align">
-                        <a class="waves-effect green darken-1 btn " ng-click="submit(tweet.id,1)" ng-show="hasTweets">Positive</a>
-                        <a class="waves-effect blue darken-1 btn" ng-click="submit(tweet.id,2)" ng-show="hasTweets">Neutral</a>
-                        <a class="waves-effect red darken-1 btn" ng-click="submit(tweet.id,0)" ng-show="hasTweets">Negative</a>
+
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+<div ng-init="tweet = TweetsService.currentTweet">
+
+    <div class=" py-md-5 py-4">
+        <md-content class="md-padding" >
+        <div flex="33" flex-offset="33"    layout="column" is="slide" ng-hide="slide">
+            <md-card class="md-raised">
+
+                    <md-card-title>
+                        <md-card-title-text>
+                            <h3 class="md-headline" style="text-align: center" ng-show="hasTweets">Tweet ID: {{tweet.id}}</h3>
+                            <span class="md-headline" ng-hide="hasTweets"><i class="large material-icons ">sentiment_very_dissatisfied</i></span>
+
+                        </md-card-title-text>
+                    </md-card-title>
+                <md-card-content>
+                    <h4 class="md-subhead" ng-hide="hasTweets">You don't have more tweets to label. Come back again later or refresh this page to check again.</h4>
+                    <p class="md-subhead" id="'tweet' + {{ tweet.id }}"  ng-show="hasTweets" >{{tweet.text}}</p>
+                </md-card-content>
+
+            </md-card>
+
+            <div class="text-center agileits-services-row row mt-lg-5 no-gutters">
+                <div class="col-lg-4 col-md-6">
+                    <div class="agileits-services-grids">
+                        <md-button ng-click="submit(tweet.id,1)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
+                        <i class="material-icons " style="color: #29aae3">thumb_up</i>
+                        </md-button>
+						<h4 class="my-2" style="color: #29aae3">Positive
+                        </h4>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="agileits-services-grids mt-md-0 mt-5 px-lg-5">
+                        <md-button ng-click="submit(tweet.id,2)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
+                        <i class="material-icons" style="color: #29aae3">help_outline</i>
+                        </md-button>
+						<h4 class="my-2" style="color: #29aae3">Neutral
+                        </h4>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div >
+                        <md-button ng-click="submit(tweet.id,0)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
+                            <i class="material-icons" style="color: #29aae3">thumb_down</i>
+                        </md-button>
+                        <!--<md-button class="md-primary">Primary Button</md-button>-->
+						<h4 class="my-2" style="color: #29aae3">Negative
+                        </h4>
+                    </div>
+                </div>
+
             </div>
-            <div ng-init="tweetsLeft  = TweetsCtrl.tweetsLeft">Tweets left: {{ tweetsLeft }}</div>
 
         </div>
+
+
+
+
+
+        </md-content>
     </div>
+
 </div>
+
+
+<style>
+[is="slide"] {
+  transition: all linear 0.5s;
+  background-color: transparent;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.ng-hide {
+  /*height: 0;*/
+  /*width: 0;*/
+  background-color: transparent;
+  top:0px;
+  left: 200%;
+}
+
+</style>

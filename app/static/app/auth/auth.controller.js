@@ -1,7 +1,5 @@
 (function() {
-    /**
- * Created by diegofigs on 5/19/17.
- */
+
     'use strict';
 
     angular
@@ -46,11 +44,11 @@
             $log.log("Registering...");
             AuthService.register(first, last, username, email, password).then(function (response) {
                 if(response.status === 200){
-                    AuthService.login(email, password);
+                    $scope.login(email, password);
                     // $scope.$parent.currentUser = response.data;
                     // AppService.currentUser = response.data;
                     // $scope.$parent.isLoggedIn = true;
-                    // $state.go('app.home');
+                    $state.go('app.home');
                     //$state.reload('app');
                 }else{
                     $scope.m = response.data;

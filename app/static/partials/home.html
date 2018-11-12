@@ -1,10 +1,80 @@
-<div class="container">
-    <h2>Twitter Health Surveillance</h2>
-    <br>
-    <h3>Most recent stats:</h3>
-    <h4 ng-init="tweetsToLabel  = HomeCtrl.unlabeledTweets">Tweets to label:</h4>
-    <div class="flow-text" > {{ tweetsToLabel }}</div>
-    <h4 ng-init="labeledTweets  = HomeCtrl.labeledTweets">Tweets labeled:</h4>
-    <div class="flow-text">{{ labeledTweets }}</div>
 
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+
+<div>
+	 <!-- counter -->
+	<div class="services-bottom stats services py-lg-5">
+		<div class="container py-5">
+			<div class="row wthree-agile-counter">
+				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
+					<div class="w3_agile_stats_grid">
+						<div class="agile_count_grid_left">
+							<i class="material-icons">label</i>
+						</div>
+						<div class="agile_count_grid_right" >
+							<p class="counter">{{labeledCounter}}</p>
+							<h4>Tweets Labeled</h4>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				   </div>
+				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
+						<div class="w3_agile_stats_grid">
+							<div class="agile_count_grid_left">
+								<i class="material-icons">label_off</i>
+							</div>
+							<div class="agile_count_grid_right">
+								<p class="counter">{{toLabelCounter}}</p>
+								<h4>Tweets to Label</h4>
+							</div>
+							<div class="clearfix"> </div>
+
+						</div>
+					</div>
+				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
+						<div class="w3_agile_stats_grid">
+							<div class="agile_count_grid_left">
+								<i class="material-icons">thumb_up</i>
+							</div>
+							<div class="agile_count_grid_right">
+								<p class="counter">{{positiveCounter}}</p>
+								<h4>Positive Labels</h4>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
+						<div class="w3_agile_stats_grid">
+							<div class="agile_count_grid_left">
+								<i class="material-icons">thumb_down</i>
+							</div>
+							<div class="agile_count_grid_right">
+								<p class="counter">{{negativeCounter}}</p>
+								<h4>Negative Labels</h4>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
+						<div class="w3_agile_stats_grid">
+							<div class="agile_count_grid_left">
+								<i class="material-icons">help_outline</i>
+							</div>
+							<div class="agile_count_grid_right">
+								<p class="counter">{{neutralCounter}}</p>
+								<h4>Neutral Labels</h4>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
 </div>
+

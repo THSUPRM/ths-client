@@ -1,11 +1,9 @@
 (function() {
-    /**
-     * Created by diegofigs on 5/18/17.
-     */
+
     'use strict';
 
     angular
-        .module('thsClient.profile', [])
+        .module('thsClient.profile', ['ngMaterial', 'ngMessages'])
         .config([
             '$stateProvider',
             '$urlRouterProvider',

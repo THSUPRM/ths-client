@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('thsClient.profile', [])
+        .module('thsClient.profile', ['ngMaterial', 'ngMessages'])
         .config([
             '$stateProvider',
             '$urlRouterProvider',

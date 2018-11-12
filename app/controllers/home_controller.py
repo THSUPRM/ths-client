@@ -23,11 +23,11 @@ def labeled_tweets_by_user(labeled_by):
     labels = Label.query.filter_by(labeled_by=labeled_by).all()
     app.logger.info("Query Labels: " + str(labels))
 
-    if len(labels) == 0:
-        message = 'User has not labeled any tweets.'
-        app.logger.error('GET /labels/get_labels-tweet HTTP/1.1 404 Not Found - ' + message)
-        resp = Response(message, status=404, mimetype='application/text')
-        return resp
+    # if len(labels) == 0:
+    #     message = 'User has not labeled any tweets.'
+    #     app.logger.error('GET /labels/get_labels-tweet HTTP/1.1 404 Not Found - ' + message)
+    #     resp = Response(message, status=404, mimetype='application/text')
+    #     return resp
 
     # result = '['
     # for label in labels:
@@ -35,6 +35,27 @@ def labeled_tweets_by_user(labeled_by):
     # result = result[0:len(result) - 2] + ']'
     result = str(len(labels))
     app.logger.info("Labels: " + result)
+
+    return Response(result, status=200, mimetype='application/json')
+
+
+@home_module.route('/label-tweets-by-user/<int:labeled_by>/<int:label>', methods=['GET'])
+def positive_tweets_by_user(labeled_by, label):
+    labels = Label.query.filter_by(labeled_by=labeled_by, label=label).all()
+    app.logger.info("Query Labels: " + str(labels))
+
+    # if len(labels) == 0:
+    #     #     message = 'User has not labeled any tweets.'
+    #     #     app.logger.error('GET /labels/get_labels-tweet HTTP/1.1 404 Not Found - ' + message)
+    #     #     resp = Response(message, status=404, mimetype='application/text')
+    #     #     return resp
+
+    # result = '['
+    # for label in labels:
+    #     result += label.get_fields() + ' , '
+    # result = result[0:len(result) - 2] + ']'
+    result = str(len(labels))
+    app.logger.info("Positive Labels: " + result)
 
     return Response(result, status=200, mimetype='application/json')
 

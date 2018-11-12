@@ -24,13 +24,30 @@
             tweetsToLabel: tweetsToLabel,
             tweetsLabeled: tweetsLabeled,
             unlabeled:unlabeled,
-            labeled:labeled
+            labeled:labeled,
+            positiveTweets:positiveTweets,
+            negativeTweets:negativeTweets,
+            neutralTweets:neutralTweets,
+            positive:positive,
+            negative:negative,
+            neutral:neutral
         };
         return service;
 
         /*
         * Implementation Details
         */
+
+        function positive(){
+            return positive;
+        }
+
+        function negative(){
+            return negative;
+        }
+        function neutral(){
+            return neutral;
+        }
 
         function unlabeled(){
             return unlabeledTweets;
@@ -51,6 +68,30 @@
         function tweetsLabeled(id){
             return $http.get("/home/labeled-tweets-by-user/" + id).then(function(response){
                 labeledTweets = response.data;
+            }).catch(function (reason) {
+                $log.log('Error loading tweets. Reason: '+ reason.data);
+            });
+        }
+
+        function positiveTweets(id){
+            return $http.get("/home/label-tweets-by-user/" + id+"/"+1).then(function(response){
+                positive = response.data;
+            }).catch(function (reason) {
+                $log.log('Error loading tweets. Reason: '+ reason.data);
+            });
+        }
+
+        function neutralTweets(id){
+            return $http.get("/home/label-tweets-by-user/" + id+"/"+2).then(function(response){
+                neutral = response.data;
+            }).catch(function (reason) {
+                $log.log('Error loading tweets. Reason: '+ reason.data);
+            });
+        }
+
+        function negativeTweets(id){
+            return $http.get("/home/label-tweets-by-user/" + id+"/"+0).then(function(response){
+                negative = response.data;
             }).catch(function (reason) {
                 $log.log('Error loading tweets. Reason: '+ reason.data);
             });

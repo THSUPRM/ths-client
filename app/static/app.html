@@ -1,31 +1,154 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid" ng-init="currentUser = {}">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-left">
-                <i class="navbar-brand fa fa-twitter-square fa-2x" ui-sref="app.home"></i>
-            </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse" ng-init="isLoggedIn = false">
-            <ul class="nav navbar-nav navbar-left">
-                <li><a ui-sref=".profile" ng-show="isLoggedIn">{{ currentUser.username }}</a> </li>
-                <li><a ui-sref=".login" ng-hide="isLoggedIn">Login</a></li>
-                <li><a ui-sref=".register" ng-hide="isLoggedIn">Register</a></li>
-                <li><a ui-sref=".tweets" ng-show="isLoggedIn">Tweets</a></li>
-                <li><a ui-sref=".about">About</a></li>
-                <li class="pull-right"><a ng-click="logout()" ng-show="isLoggedIn" ui-sref=".login">Logout</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+
+
+<head>
+    <title>Twitter Health Surveillance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="THSUPRM" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+</head>
+
+
+<!--
+    Your HTML content here
+  -->
+
+
+
+    <!-- banner -->
+    <div class="inner-banner" >
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary pt-3">
+                <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a ui-sref="app.home" class="nav-link" ng-show="isLoggedIn">Home</a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a ui-sref=".profile" class="nav-link" ng-show="isLoggedIn">{{ currentUser.username }}</a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" ui-sref=".about">About</a>
+                        </li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" ui-sref=".tweets" ng-show="isLoggedIn">Tweets</a>
+                        </li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" ui-sref=".register" ng-hide="isLoggedIn">Register</a>
+                        </li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" ui-sref=".login" ng-hide="isLoggedIn">Login</a>
+                        </li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" ui-sref=".login" ng-show="isLoggedIn" ng-click="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+			</nav>
+        </header>
+        <!-- //header -->
     </div>
-</nav>
+
+
 <ui-view class="container"></ui-view>
-<footer class="footer">
-    <div class="container-fluid text-center">
-        Provided by <a href="https://github.com/THSUPRM/ths-client">THS UPRM</a>
-    </div>
-</footer>
+
+	<!-- footer -->
+	<footer class="footer-emp bg-dark py-5">
+		<div class="container">
+			<div class="row footer-top">
+				<div class="col-lg-4 footer-grid pr-5">
+					<h2 class="footer-title border-bottom text-uppercase mb-4 pb-3">About Us</h2>
+					<div class="footer-text">
+						
+						<p>Curabitur non nulla sit amet nislinit tempus convallis quis ac lectus. lac inia eget consectetur sed, convallis at
+							tellus. Nulla porttitor accumsana tincidunt.</p>
+
+					</div>
+				</div>
+				<div class="col-lg-4 footer-grid">
+					<h3 class="footer-title border-bottom text-uppercase mb-4 pb-3">Contact Us</h3>
+					<div class="contact-info">
+						<ul class="list-unstyled">
+							<li>
+								<div class="row">
+									<div class="col-1">
+										<i class="material-icons">location_on</i>
+									</div>
+									<div class="col-11">
+										<p>The company name
+											<span>Lorem ipsum dolor,</span>New York,Morris Park. </p>
+									</div>
+								</div>
+							</li>
+							<li class="my-2">
+								<div class="row">
+									<div class="col-1">
+										<i class="material-icons">phone</i>
+									</div>
+									<div class="col-11">
+										<p>1234567890</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<div class="col-1">
+										<i class="material-icons">email</i>
+									</div>
+									<div class="col-11">
+										<a href="mailto:info@example.com">mail@example.com</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<div class="col-1">
+										<span class="fab fa-github"></span>
+									</div>
+									<div class="col-11">
+										<a href="https://github.com/THSUPRM/ths-client">https://github.com/THSUPRM/ths-client</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+	<div class="copyright py-3">
+		<p class="copy-right text-center ">&copy; 2018 Pervasive. All Rights Reserved | Design by
+			<a href="http://w3layouts.com/"> W3layouts </a>
+		</p>
+	</div>
+	<!-- //footer -->
+
+
+
+

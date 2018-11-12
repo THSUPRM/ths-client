@@ -10,12 +10,32 @@
             'TweetsService',
             'AppService',
             '$state',
+            '$interval',
             TweetsController
 
         ])
         ;
 
-    function TweetsController($scope, $log, TweetsService, AppService, $state) {
+    function TweetsController($scope, $log, TweetsService, AppService, $state, $interval) {
+
+        $scope.number = 0;
+
+          $scope.index = 0;
+
+
+          $scope.slide = false;
+
+
+
+          var move = function () {
+              $scope.slide = !$scope.slide;
+          };
+
+          var colors = ['red','blue','green','yellow','orange'];
+          $scope.colorClass = function(number) {
+              return colors[number % colors.length];
+          };
+
 
         TweetsService.userId = AppService.currentUser.id;
         $log.log("App Service: " + AppService);
@@ -50,6 +70,7 @@
             // }else{
             //     label = 2;
             // }
+             move();
             TweetsService.saveLabel(tweet_id, classification, AppService.currentUser.id);
             $log.log(tweet_id);
             //$(id).hide();
@@ -57,6 +78,8 @@
             $scope.tweet = tweets[index];
             $scope.tweetsLeft--;
             $scope.hasTweets = index < tweets.length;
+            $interval(move,500, 1);
+
 
 
         };

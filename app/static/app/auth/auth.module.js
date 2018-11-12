@@ -1,11 +1,9 @@
 (function() {
-    /**
-     * Created by diegofigs on 5/18/17.
-     */
+
     'use strict';
 
     angular
-        .module('thsClient.auth', [])
+        .module('thsClient.auth', ['ngMaterial', 'ngMessages'])
         .config([
             '$stateProvider',
             '$urlRouterProvider',

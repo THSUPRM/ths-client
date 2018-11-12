@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diegofigs/ths-client.git"
+    "url": "git+https://github.com/THSUPRM/ths-client.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diegofigs/ths-client/issues"
+    "url": "https://github.com/THSUPRM/ths-client/issues"
   },
-  "homepage": "https://github.com/diegofigs/ths-client#readme",
+  "homepage": "https://github.com/THSUPRM/ths-client#readme",
   "dependencies": {
     "bower": "^1.8.0"
   }

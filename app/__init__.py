@@ -14,16 +14,15 @@ db = SQLAlchemy(app)
 assets = Environment(app)
 
 vendor_bundle = Bundle(
-    'bower_components/jquery/dist/jquery.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js',
     'bower_components/angular-cookies/angular-cookies.js',
+    'bower_components/angular-aria/angular-aria.js',
+    'bower_components/angular-animate/angular-animate.js',
+    'bower_components/angular-messages/angular-messages.js',
+    'bower_components/angular-material/angular-material.js',
+    'bower_components/jquery/dist/jquery.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
-    'bower_components/moment/moment.js',
-    'bower_components/materialize/dist/js/materialize.js',
-    'bower_components/materialize/js/initial.js',
-    'bower_components/materialize/js/sideNav.js',
-    'web/js/bootstrap.js',
     filters='rjsmin',
     output='build/vendor.min.js'
 )
@@ -54,16 +53,11 @@ app_bundle = Bundle(
 assets.register('app', app_bundle)
 
 style_bundle = Bundle(
+
     'bower_components/bootstrap/dist/css/bootstrap.css',
-    'bower_components/bootstrap/dist/css/bootstrap-theme.css',
-    'bower_components/font-awesome/css/font-awesome.css',
-    'bower_components/materialize/dist/css/materialize.css',
-    'bower_components/materialize/templates/starter-template/css/style.css',
-    'web/css/style.css',
-    'web/css/theme.css',
-    'web/css/clndr.css',
-
-
+    'bower_components/angular-material/angular-material.css',
+    'bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css',
+    'css/style.css',
     filters='cssmin',
     output='build/style.min.css'
 )

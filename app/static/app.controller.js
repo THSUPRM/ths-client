@@ -13,8 +13,9 @@
         ]);
 
     function AppController($scope, $log, AppService, $state) {
-        $log.log('Hello World from the App Controller using the $log Service');
-        //$log.log(AppService.service.currentUser);
+        $log.log('Hello World from the App Controller using the $log Service '  + AppService.currentUser.username);
+
+        $scope.currentUser = AppService.currentUser;
         if(AppService.currentUser.username !== undefined ){
             $scope.isLoggedIn = true;
             $scope.currentUser = AppService.currentUser;
@@ -26,6 +27,9 @@
             }
         }
 
+
+
+
         $scope.isLoggedIn = AppService.isLoggedIn();
         $scope.currentUser = AppService.currentUser;
         $scope.logout = function(){
@@ -34,6 +38,7 @@
             $scope.currentUser = {};
             $state.go('app.login');
         };
+        $log.log('isLoggedIn: '+ $scope.isLoggedIn);
 
 
 

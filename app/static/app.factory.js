@@ -31,6 +31,8 @@
         };
         getCookieData();
         isLoggedIn();
+        console.log('AppService:');
+        console.log(currentUser);
         return service;
 
 
@@ -79,33 +81,51 @@
         }
 
         function updateName(newName){
-            currentUser.first = newName;
             var data = {
                 username : currentUser.username,
                 newName  : newName
             };
-
-            return $http.post('/profile/update-name', data);
+            return $http.post('/profile/update-name', data)
+                .then(function () {
+                    currentUser.first = newName;
+                    return true;
+                })
+                .catch(updateError);
         }
 
         function updateLast(newLast){
-            currentUser.last = newLast;
             var data = {
                 username : currentUser.username,
                 newLast  : newLast
             };
 
-            return $http.post('/profile/update-last', data);
+            return $http.post('/profile/update-last', data)
+                .then(function(){
+                    currentUser.last = newLast;
+                    return true;
+                })
+                .catch(updateError);
         }
 
         function updateEmail(newEmail){
-            currentUser.email = newEmail;
             var data = {
                 username : currentUser.username,
                 newEmail  : newEmail
             };
-
             return $http.post('/profile/update-email', data);
+        }
+
+        function updateComplete(response) {
+
+                $log.log('Update Complete');
+                $log.log(response.data);
+                return response;
+            }
+
+        function updateError(response) {
+            $log.log('Update Error');
+            $log.log(response);
+            return false;
         }
 
         function logout() {

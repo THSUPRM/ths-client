@@ -3,21 +3,17 @@
   "description": "Flask-powered server for deployment of Angular client for THS.",
   "main": "index.js",
   "authors": [
-    "Diego Figueroa <diego.fv94@gmail.com>",
-    "Jady Urbina <jady.urbina@upr.edu>"
+    "Luis Rivera <luis.rivera157@upr.edu>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/diegofigs/ths-client",
+  "homepage": "https://github.com/THSUPRM/ths-client",
   "dependencies": {
-    "angular": "1.6.4",
+    "angular": "1.7.5",
     "requirejs": "2.3.3",
-    "angular-ui-router": "0.4.2",
-    "angular-cookies": "1.6.4",
-    "bootstrap": "3.3.7",
-    "moment": "2.10.6",
-    "font-awesome": "4.7.0",
-    "jquery": "3.3.1",
-    "materialize": "0.100.2"
-
+    "angular-ui-router": "1.0.20",
+    "angular-material": "1.1.10",
+    "angular-cookies": "1.7.5",
+    "bootstrap": "4.0.0",
+    "font-awesome": "5.0.8"
   }
 }
