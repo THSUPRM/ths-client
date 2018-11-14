@@ -6,80 +6,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <div>
-	 <!-- counter -->
-	<div class="services-bottom stats services py-lg-5">
-		<div class="container py-5">
-			<div class="row wthree-agile-counter">
-				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
-					<div class="w3_agile_stats_grid">
-						<div class="agile_count_grid_left">
-							<i class="material-icons">label</i>
-						</div>
-						<div class="agile_count_grid_right" >
-							<p class="counter">{{labeledCounter}}</p>
-							<h4>Tweets Labeled</h4>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				   </div>
-				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
-						<div class="w3_agile_stats_grid">
-							<div class="agile_count_grid_left">
-								<i class="material-icons">label_off</i>
-							</div>
-							<div class="agile_count_grid_right">
-								<p class="counter">{{toLabelCounter}}</p>
-								<h4>Tweets to Label</h4>
-							</div>
-							<div class="clearfix"> </div>
 
-						</div>
-					</div>
-				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
-						<div class="w3_agile_stats_grid">
-							<div class="agile_count_grid_left">
-								<i class="material-icons">thumb_up</i>
-							</div>
-							<div class="agile_count_grid_right">
-								<p class="counter">{{positiveCounter}}</p>
-								<h4>Positive Labels</h4>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
-						<div class="w3_agile_stats_grid">
-							<div class="agile_count_grid_left">
-								<i class="material-icons">thumb_down</i>
-							</div>
-							<div class="agile_count_grid_right">
-								<p class="counter">{{negativeCounter}}</p>
-								<h4>Negative Labels</h4>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				<div class="col-lg col-md col-sm w3_agile_stats_grid-top">
-						<div class="w3_agile_stats_grid">
-							<div class="agile_count_grid_left">
-								<i class="material-icons">help_outline</i>
-							</div>
-							<div class="agile_count_grid_right">
-								<p class="counter">{{neutralCounter}}</p>
-								<h4>Neutral Labels</h4>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-			</div>
-		</div>
-	</div>
+    <md-card style="background-color: #29aae3; color: white">
+        <md-card-content layout-gt-xs="row" layout="column" layout-align="center center " layout-align-gt-xs="space-around" layout-margin style="text-transform: uppercase">
+            <div >
+                <div layout="row">
+                    <i class="material-icons">label</i>
+                    <h4 class="counter md-title">&nbsp;{{labeledCounter}}</h4>
+                    <h5 hide-gt-xs>&nbsp;&nbsp;Labeled</h5>
+                </div>
+                <div >
+                    <h5 hide show-gt-xs>Labeled</h5>
+                </div>
+            </div>
+            <div >
+                <div layout="row">
+                    <i class="material-icons">label_off</i>
+                    <h4 class="counter md-title">&nbsp;{{toLabelCounter}}</h4>
+                    <h5 hide-gt-xs>&nbsp;&nbsp;To Label</h5>
+                </div>
+                <div >
+                    <h5 hide show-gt-xs>To Label</h5>
+                </div>
+            </div>
+            <div >
+                <div layout="row">
+                    <i class="material-icons">thumb_up</i>
+                    <h4 class="counter md-title">&nbsp;{{positiveCounter}}</h4>
+                    <h5 hide-gt-xs>&nbsp;&nbsp;Positive</h5>
+                </div>
+                <div >
+                    <h5 hide show-gt-xs>Positive</h5>
+                </div>
+
+            </div>
+            <div >
+                <div layout="row">
+                    <i class="material-icons">thumb_down</i>
+                    <h4 class="counter md-title">&nbsp;{{negativeCounter}}</h4>
+                    <h5 hide-gt-xs>&nbsp;&nbsp;Negative</h5>
+                </div>
+                <div >
+                    <h5 hide show-gt-xs>Negative</h5>
+                </div>
+            </div>
+            <div >
+                <div layout="row">
+                    <i class="material-icons">help_outline</i>
+                    <h4 class="counter md-title">&nbsp;{{neutralCounter}}</h4>
+                    <h5 hide-gt-xs>&nbsp;&nbsp;Neutral</h5>
+                </div>
+                <div >
+                    <h5 hide show-gt-xs>Neutral</h5>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
+	 <!-- counter -->
+
 </div>
 <div ng-init="tweet = TweetsService.currentTweet">
 
     <div class=" py-md-5 py-4">
         <md-content class="md-padding" >
-        <div flex="33" flex-offset="33"    layout="column" is="slide" ng-hide="slide">
+        <div flex-gt-md="33" flex     layout="column" is="slide" ng-hide="slide">
             <md-card class="md-raised">
 
                     <md-card-title>
@@ -96,9 +86,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             </md-card>
 
-            <div class="text-center agileits-services-row row mt-lg-5 no-gutters">
-                <div class="col-lg-4 col-md-6">
-                    <div class="agileits-services-grids">
+            <div class="text-center  no-gutters" layout="row">
+                <div flex="33">
+                    <div >
                         <md-button ng-click="submit(tweet.id,1)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
                         <i class="material-icons " style="color: #29aae3">thumb_up</i>
                         </md-button>
@@ -106,8 +96,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="agileits-services-grids mt-md-0 mt-5 px-lg-5">
+                <div flex="33">
+                    <div >
                         <md-button ng-click="submit(tweet.id,2)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
                         <i class="material-icons" style="color: #29aae3">help_outline</i>
                         </md-button>
@@ -116,7 +106,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div flex="33">
                     <div >
                         <md-button ng-click="submit(tweet.id,0)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
                             <i class="material-icons" style="color: #29aae3">thumb_down</i>
@@ -130,11 +120,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
 
         </div>
-
-
-
-
-
         </md-content>
     </div>
 

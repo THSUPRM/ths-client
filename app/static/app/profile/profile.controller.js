@@ -24,8 +24,10 @@
             var isOk = true;
             if($scope.first !== undefined)
                 AppService.updateName($scope.first);
+                $mdDialog.hide("myDialog");
             if($scope.last !== undefined)
                 AppService.updateLast($scope.last);
+                $mdDialog.hide("myDialog");
             if($scope.email !== undefined)
                 AppService.updateEmail($scope.email)
                     .then(function(){

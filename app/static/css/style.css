@@ -282,14 +282,14 @@ ul.social-iconsv2 li:last-child {
     background:#29aae3;
 }
 .agile_count_grid_left {
-    float: left;
+
     width: 20%;
 }
 .agile_count_grid_left span,.agile_count_grid_right p{
 	font-size:2em;
 }
 .agile_count_grid_right {
-    float: left;
+
 }
 .agile_count_grid_left i {
     font-size: 2em;
