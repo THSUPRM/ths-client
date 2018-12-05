@@ -89,8 +89,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="text-center  no-gutters" layout="row">
                 <div flex="33">
                     <div >
-                        <md-button ng-click="submit(tweet.id,1)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
-                        <i class="material-icons " style="color: #29aae3">thumb_up</i>
+                        <md-button ng-click="submit(tweet.id,1)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: green" >
+                        <i class="material-icons " style="color: white">thumb_up</i>
                         </md-button>
 						<h4 class="my-2" style="color: #29aae3">Positive
                         </h4>
@@ -98,22 +98,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div flex="33">
                     <div >
-                        <md-button ng-click="submit(tweet.id,2)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
-                        <i class="material-icons" style="color: #29aae3">help_outline</i>
-                        </md-button>
-						<h4 class="my-2" style="color: #29aae3">Neutral
-                        </h4>
-
-                    </div>
-                </div>
-                <div flex="33">
-                    <div >
-                        <md-button ng-click="submit(tweet.id,0)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #343a40" >
-                            <i class="material-icons" style="color: #29aae3">thumb_down</i>
+                        <md-button ng-click="submit(tweet.id,0)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: red" >
+                            <i class="material-icons" style="color: white">thumb_down</i>
                         </md-button>
                         <!--<md-button class="md-primary">Primary Button</md-button>-->
 						<h4 class="my-2" style="color: #29aae3">Negative
                         </h4>
+                    </div>
+                </div>
+                <div flex="33">
+                    <div >
+                        <md-button ng-click="submit(tweet.id,2)" ng-show="hasTweets" class="md-fab " aria-label="FAB" style=" background-color: #29aae3" >
+                        <i class="material-icons" style="color: white">help_outline</i>
+                        </md-button>
+						<h4 class="my-2" style="color: #29aae3">Neutral
+                        </h4>
+
                     </div>
                 </div>
 

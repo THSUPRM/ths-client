@@ -48,34 +48,39 @@
             unlabeledTweets = HomeService.unlabeled();
 
             $scope.tweetsToLabel = unlabeledTweets;
-            if (unlabeledTweets > 0) {
-                $interval(updateToLabelCounter, 1, HomeService.unlabeled());
-            }
+            $scope.toLabelCounter = unlabeledTweets;
+            // if (unlabeledTweets > 0) {
+            //     $interval(updateToLabelCounter, 1, HomeService.unlabeled());
+            // }
         });
         HomeService.tweetsLabeled(AppService.currentUser.id).then(function () {
             labeledTweets = HomeService.labeled();
             $scope.labeledTweets = labeledTweets;
-            if (labeledTweets > 0) {
-                $interval(updateLabeledCounter, 3, $scope.labeledTweets);
-            }
+            $scope.labeledCounter = labeledTweets;
+            // if (labeledTweets > 0) {
+            //     $interval(updateLabeledCounter, 3, $scope.labeledTweets);
+            // }
         });
         HomeService.positiveTweets(AppService.currentUser.id).then(function () {
             labeledTweets = HomeService.positive();
-            if (labeledTweets > 0) {
-                $interval(updatePositiveCounter, 3, labeledTweets);
-            }
+            $scope.positiveCounter = labeledTweets;
+            // if (labeledTweets > 0) {
+            //     $interval(updatePositiveCounter, 3, labeledTweets);
+            // }
         });
         HomeService.neutralTweets(AppService.currentUser.id).then(function () {
             labeledTweets = HomeService.neutral();
-            if (labeledTweets > 0) {
-                $interval(updateNeutralCounter, 3, labeledTweets);
-            }
+            $scope.neutralCounter = labeledTweets;
+            // if (labeledTweets > 0) {
+            //     $interval(updateNeutralCounter, 3, labeledTweets);
+            // }
         });
         HomeService.negativeTweets(AppService.currentUser.id).then(function () {
             labeledTweets = HomeService.negative();
-            if (labeledTweets > 0) {
-                $interval(updateNegativeCounter, 3, labeledTweets);
-            }
+            $scope.negativeCounter = labeledTweets;
+            // if (labeledTweets > 0) {
+            //     $interval(updateNegativeCounter, 3, labeledTweets);
+            // }
         });
 
     }
