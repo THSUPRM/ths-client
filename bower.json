@@ -8,7 +8,7 @@
   "license": "MIT",
   "homepage": "https://github.com/THSUPRM/ths-client",
   "dependencies": {
-    "angular": "1.7.5",
+    "angular": "1.7.8",
     "jQuery": "3.3.1",
     "requirejs": "2.3.3",
     "angular-ui-router": "1.0.20",
@@ -18,6 +18,6 @@
     "font-awesome": "5.0.8"
   },
    "resolutions": {
-    "angular": "1.7.7"
+    "angular": "1.7.8"
   }
 }
